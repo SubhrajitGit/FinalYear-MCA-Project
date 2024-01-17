@@ -1,0 +1,11 @@
+{
+  "name": "meds.com",
+  "version": "1.0.0",
+  "description": "Project on meds using react and node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
