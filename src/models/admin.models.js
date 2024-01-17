@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { User } from "./user.models";
+import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 
 const adminSchema=new mongoose.Schema({
     username:{
@@ -38,4 +39,7 @@ const adminSchema=new mongoose.Schema({
         ref:"Doctor"
     }
 },{timestamps: true})
+
+adminSchema.plugin(mongooseAggregatePaginate)
+
 export const Admin=mongoose.model("Admin",adminSchema);
