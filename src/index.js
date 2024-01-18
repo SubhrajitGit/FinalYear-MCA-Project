@@ -6,13 +6,16 @@ import { DB_NAME } from "./constants.js";
 import connectDB from "./db/index.js";
 
 dotenv.config({
-    path: './env'
+    path: './.env'
 });
 
 connectDB()
     .then(() => {
-        app.listen(process.env.PORT || 5000, () => {
-            console.log(`Server is Running at Port: ${process.env.PORT || 5000}`);
+        app.get("/",(req,res)=>{
+            res.send("Home Page");
+        })
+        app.listen(process.env.PORT || 4000, () => {
+            console.log(`Server is Running at Port: ${process.env.PORT || 4000}`);
         });
     })
     .catch((err) => {

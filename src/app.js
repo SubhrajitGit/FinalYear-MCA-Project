@@ -18,5 +18,10 @@ app.use(express.static("public"))
 //COOKIE MIDDLEWARE
 app.use(cookieParser())
 
+//routes import
+import userRouter from "./routes/user.routes.js"
+
+//routes declaration
+app.use("/users",userRouter)
 
 export default  app;
