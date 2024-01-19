@@ -20,14 +20,14 @@ const productSchema=new mongoose.Schema({
         type:Number,
         default: 0
     },
-    category:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"",
-        required: true,
-    },
-    owner:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"",
-    }
+    // category:{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:"",
+    //     required: true,
+    // },
+    // owner:{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:"",
+    // }
 })
 export const Product=mongoose.model("Product",productSchema);
