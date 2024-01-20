@@ -1,17 +1,25 @@
 import mongoose from "mongoose";
-
+import bcrypt from "bcrypt";
 const avilableTime=new mongoose.Schema({
     start:{
-        type: Number,
+        type: String,
         required: true
     },
     end:{
-        type: Number,
+        type: String,
         required: true
     }
 })
 const doctorSchema=new mongoose.Schema({
     name:{
+        type: String,
+        required: true
+    },
+    email:{
+        type: String,
+        required: true
+    },
+    password:{
         type: String,
         required: true
     },
@@ -41,4 +49,15 @@ const doctorSchema=new mongoose.Schema({
         type:[avilableTime]
     }
 })
+
+doctorSchema.pre("save", async function (next) {
+    if(!this.isModified("password")) return next();
+    this.password= await bcrypt.hash(this.password,10)
+    next()
+})
+
+doctorSchema.methods.isPasswordCorrect=async function(password){
+    return await bcrypt.compare(password,this.password)
+}
+
 export const Doctor=mongoose.model("Doctor",doctorSchema);

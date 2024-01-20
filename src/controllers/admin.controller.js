@@ -36,8 +36,8 @@ const registerAdmin = asyncHandler( async (req,res)=>{
     }
 })
 const loginAdmin = asyncHandler( async (req,res)=>{
-   try {
     let { email,password } = req.body;
+   try {
     const adminDetails= await Admin.findOne({email});
     if(!adminDetails){
         return res.status(404).json({
