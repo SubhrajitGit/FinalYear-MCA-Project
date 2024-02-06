@@ -46,4 +46,12 @@ const registerProduct = asyncHandler(async (req, res) => {
   }
 });
 
-export { registerProduct };
+const allProduct=asyncHandler(async (req,res)=>{
+  try {
+    const product=await Product.find({});
+    console.log(product)
+  } catch (error) {
+    console.log("Error While Fetching Product")
+  }
+})
+export { registerProduct,allProduct };

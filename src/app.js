@@ -5,13 +5,24 @@ import cookieParser from "cookie-parser";
 const app=express();
 
 //CORS POLICY
-app.use(cors({
-    origin: process.env.CORS_ORIGIN,
-    credentials: true
-}))
+// app.use(cors({
+//     origin: process.env.CORS_ORIGIN,
+//     credentials: true
+// }))
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    next();
+  });
+  
+app.use(express.json({limit:"10mb"}))//limit is also optional
+app.use(express.urlencoded({extended: true}))//extended is optional
+app.use(express.static("public"))
 
 //TYPE OF DATA ACEEPT
-app.use(express.json({limit:"20kb"}))//limit is also optional
+app.use(express.json({limit:"10mb"}))//limit is also optional
 app.use(express.urlencoded({extended: true}))//extended is optional
 app.use(express.static("public"))
 
