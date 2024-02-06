@@ -15,7 +15,7 @@ connectDB()
             res.send("Home Page");
         })
         app.listen(process.env.PORT, () => {
-            console.log(`Server is Running at Port: ${process.env.PORT || 4000}`);
+            console.log(`Server is Running at Port: ${process.env.PORT}`);
         });
     })
     .catch((err) => {
