@@ -49,7 +49,15 @@ const registerProduct = asyncHandler(async (req, res) => {
 const allProduct=asyncHandler(async (req,res)=>{
   try {
     const product=await Product.find({});
-    console.log(product)
+    if(!product)
+    {
+      res.status(400).json({
+        message:"No Product Avilable"
+      })
+    }
+    else{
+      res.status(200).json(product)
+    }
   } catch (error) {
     console.log("Error While Fetching Product")
   }

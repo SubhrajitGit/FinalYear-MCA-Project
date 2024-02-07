@@ -12,5 +12,5 @@ router.route("/register").post(
     ]),
     registerProduct
     )
-router.route("/allProduct").post(allProduct)
+router.route("/allProduct").get(allProduct)
 export default router
