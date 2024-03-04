@@ -84,4 +84,47 @@ const loginUser = asyncHandler( async (req,res)=>{
         console.log("Login Failed")
     }
 })
-export {registerUser,loginUser}
+
+//forgot password part
+var e = "";
+const forgotUser = asyncHandler(async (req, res) => {
+  try {
+    e = req.body.email;
+    const finduser = await User.findOne({ email: e });
+    if (finduser) {
+      //logic for mail start..................
+
+      var trasport = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "pabitramoharana5678@gmail.com",
+          pass: "kgrj oorx pjiw hjjl",
+        },
+      });
+      var otp = Math.floor(Math.random() * 1000000);
+      console.log(otp);
+      var mail = {
+        form: "pabitramoharana5678@gmail.com",
+        to: e,
+        subject: "your otp",
+        text: " your otp is" + " " + otp,
+      };
+      trasport.sendMail(mail, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(`mail send to`, info.response);
+          return res.status(200).json({
+            message: "otp send succsess",
+          });
+        }
+      });
+
+      //logic for mail end....................
+    }
+} catch (err) {
+    console.log(err);
+}
+});
+
+export {registerUser,loginUser,forgotUser}
